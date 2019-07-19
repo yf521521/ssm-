@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.yf.mapper.UserMapper">
+
+    <!--//2. 添加用户信息-->
+    <!--Integer save(User user);-->
+    <insert id="save" parameterType="User" >
+        insert into
+          user
+        (username,password,phone)
+          values
+        (#{username},#{password},#{phone})
+    </insert>
+
+
+    <select id="findCountByUsername" resultType="Integer">
+        select count(0) from user where username = #{username}
+    </select>
+    <select id="findByUserName" resultType="com.yf.pojo.User">
+        select * from user where username = #{username}
+    </select>
+</mapper>
